@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33815.320
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bravi.Domain", "Bravi.Domain\Bravi.Domain.csproj", "{3ACD5511-FB91-4D4B-AAD9-AAD1097A4D41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bravi.API", "Bravi.API\Bravi.API.csproj", "{A1C30089-EF61-4475-8A11-5D8D90343A18}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3ACD5511-FB91-4D4B-AAD9-AAD1097A4D41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3ACD5511-FB91-4D4B-AAD9-AAD1097A4D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3ACD5511-FB91-4D4B-AAD9-AAD1097A4D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3ACD5511-FB91-4D4B-AAD9-AAD1097A4D41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1C30089-EF61-4475-8A11-5D8D90343A18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1C30089-EF61-4475-8A11-5D8D90343A18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1C30089-EF61-4475-8A11-5D8D90343A18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1C30089-EF61-4475-8A11-5D8D90343A18}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {52BED6B8-74E6-4024-897C-35722B16FFF8}
+	EndGlobalSection
+EndGlobal
