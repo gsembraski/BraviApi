@@ -22,7 +22,7 @@ namespace Bravi.Domain.Commands.Brackets
 
             if (string.IsNullOrEmpty(text)) return Task.FromResult(new GenericCommandResult(true, "A sequencia esta correta.")) ;
 
-            return Task.FromResult(new GenericCommandResult(false, "A Sequencia esta correta"));
+            return Task.FromResult(new GenericCommandResult(false, "A Sequencia esta incorreta"));
         }
     }
 }

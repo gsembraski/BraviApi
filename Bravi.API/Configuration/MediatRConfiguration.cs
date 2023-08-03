@@ -11,7 +11,12 @@ public static class MediatRConfiguration
     {
         if (builder == null) throw new ArgumentNullException(nameof(builder));
 
-        builder.Services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(Domain.Bootstrapper).Assembly);
+        builder.Services.AddMediatR(x => {
+            x.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
+            x.RegisterServicesFromAssemblies(typeof(Domain.Bootstrapper).Assembly);
+        });
+
+        //builder.Services.AddMediatR(Assembly.GetExecutingAssembly(), typeof(Domain.Bootstrapper).Assembly);
 
         // Add FluentValidation classes into 
         var assembly = typeof(Domain.Bootstrapper).Assembly;

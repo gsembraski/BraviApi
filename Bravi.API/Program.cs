@@ -1,5 +1,6 @@
 using Bravi.API.Configuration;
 using Bravi.Domain;
+using FluentValidation.AspNetCore;
 
 public class Program
 {
@@ -19,8 +20,8 @@ public class Program
 
 
         builder.Services.AddControllers();
-
         builder.Services.ConfigureDomain();
+
         builder.AddMediatRConfiguration();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
@@ -37,6 +38,11 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        app.UseCors(x => x
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
 
         app.UseHttpsRedirection();
 

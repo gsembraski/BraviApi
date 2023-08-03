@@ -16,5 +16,5 @@ public class BracketController : ControllerBaseApi
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAsync(BracketsCommand command) => await TrySendCommand(command);
+    public async Task<IActionResult> GetAsync([FromQuery] BracketsCommand command) => await TrySendCommand(command);
 }
