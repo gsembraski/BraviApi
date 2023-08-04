@@ -9,5 +9,10 @@ using System.Threading.Tasks;
 
 namespace Bravi.Domain.Commands.Person
 {
-    public record CreatePersonCommand : PersonCommand, IRequest<GenericCommandResult>;
+    public record PersonCommand
+    {
+        public string Name { get; set; }
+        public string LastName { get; set; }
+        public string NickName { get; set; }
+    }
 }

@@ -8,5 +8,12 @@ using System.Threading.Tasks;
 
 namespace Bravi.Domain.Commands.Contact
 {
-    public record CreateContactCommand : ContactCommand, IRequest<GenericCommandResult>;
+    public record CreateContactCommand : ContactCommand, IRequest<GenericCommandResult>
+    {
+        public CreateContactCommand SetIds(int personId) 
+        {
+            PersonId = personId;
+            return this;
+        }
+    }
 }

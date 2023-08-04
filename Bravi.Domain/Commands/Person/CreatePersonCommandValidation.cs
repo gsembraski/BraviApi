@@ -11,26 +11,8 @@ namespace Bravi.Domain.Commands.Person
     {
         public CreatePersonCommandValidation()
         {
-            RuleFor(x => x.Name)
-                .NotNull()
-                .NotEmpty()
-                .WithMessage("Error {PropertyName}: O campo é obrigatório.");
-
-            RuleFor(x => x.LastName)
-                .NotNull()
-                .NotEmpty()
-                .WithMessage("Error {PropertyName}: O campo é obrigatório.");
-
-            RuleFor(x => x.NickName)
-                .NotNull()
-                .NotEmpty()
-                .WithMessage("Error {PropertyName}: O campo é obrigatório.");
-
-
-            RuleFor(x => x.NickName)
-                .NotNull()
-                .NotEmpty()
-                .WithMessage("Error {PropertyName}: O campo é obrigatório.");
+            RuleFor(x => x)
+                .SetValidator(new PersonCommandValidation());
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Bravi.Domain.Resources.Notification;
+﻿using Bravi.Domain.Repositories;
+using Bravi.Domain.Resources.Notification;
 using Bravi.Domain.Resources.Result;
 using MediatR;
 using System;
@@ -12,15 +13,20 @@ namespace Bravi.Domain.Commands.Person
     public class CreatePersonCommandHandler : IRequestHandler<CreatePersonCommand, GenericCommandResult>
     {
         private readonly IDomainNotificationContext _notification;
+        private readonly IPersonRepository _personRepository;
 
-        public CreatePersonCommandHandler(IDomainNotificationContext notification)
+        public CreatePersonCommandHandler(IDomainNotificationContext notification, IPersonRepository personRepository)
         {
             _notification = notification;
+            _personRepository = personRepository;
         }
 
-        public Task<GenericCommandResult> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
+        public async Task<GenericCommandResult> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
         {
-            return default;
+            var person = new Entities.Person(request.Name, request.LastName, request.NickName);
+            await _personRepository.InsertAsync(person);
+
+            return new GenericCommandResult(true, "Pessoa cadastrada com sucesso!", person.Id);
         }
     }
 }
