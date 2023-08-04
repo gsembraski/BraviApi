@@ -1,4 +1,5 @@
-﻿using Bravi.Domain.Resources.Result;
+﻿using Bravi.Domain.Resources.Notification;
+using Bravi.Domain.Resources.Result;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,13 @@ namespace Bravi.Domain.Commands.Brackets
 {
     public class BracketsCommandHandler : IRequestHandler<BracketsCommand, GenericCommandResult>
     {
+        private readonly IDomainNotificationContext _notification;
+
+        public BracketsCommandHandler(IDomainNotificationContext notification)
+        {
+            _notification = notification;
+        }
+
         public Task<GenericCommandResult> Handle(BracketsCommand request, CancellationToken cancellationToken)
         {
             var text = request.Text;
@@ -22,7 +30,8 @@ namespace Bravi.Domain.Commands.Brackets
 
             if (string.IsNullOrEmpty(text)) return Task.FromResult(new GenericCommandResult(true, "A sequencia esta correta.")) ;
 
-            return Task.FromResult(new GenericCommandResult(false, "A Sequencia esta incorreta"));
+            _notification.NotifyError("A Sequencia esta incorreta");
+            return Task.FromResult(new GenericCommandResult(false));
         }
     }
 }

@@ -1,6 +1,8 @@
 using Bravi.API.Configuration;
 using Bravi.Domain;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Localization;
+using System.Globalization;
 
 public class Program
 {
@@ -38,6 +40,15 @@ public class Program
             app.UseSwagger();
             app.UseSwaggerUI();
         }
+
+        app.UseRequestLocalization(new RequestLocalizationOptions
+        {
+            DefaultRequestCulture = new RequestCulture("pt-BR"),
+            SupportedCultures = new[]{
+                CultureInfo.CreateSpecificCulture("pt-BR")
+            },
+            FallBackToParentCultures = false
+        });
 
         app.UseCors(x => x
                         .AllowAnyOrigin()
