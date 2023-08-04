@@ -15,6 +15,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Bravi.Domain\Bravi.Domain.csproj" />
+		<ProjectReference Include="..\Bravi.Infrastructure\Bravi.Infrastructure.csproj" />
 	</ItemGroup>
 
 </Project>

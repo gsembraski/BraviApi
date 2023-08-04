@@ -9,15 +9,15 @@ namespace Bravi.Domain.Entities
     public class Person:Entity<int>
     {
         public Person() { }
-        public Person(string name, string lastName, string nickName)
+        public Person(string name, string lastName, string nickname)
         {
             Name = name;
             LastName = lastName;
-            NickName = nickName;
+            Nickname = nickname;
         }
 
         public string Name { get; private set; }
         public string LastName { get; private set; }
-        public string NickName { get; private set; }
+        public string Nickname { get; private set; }
     }
 }

@@ -1,5 +1,6 @@
 using Bravi.API.Configuration;
 using Bravi.Domain;
+using Bravi.Infrastructure;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Localization;
 using System.Globalization;
@@ -23,6 +24,7 @@ public class Program
 
         builder.Services.AddControllers();
         builder.Services.ConfigureDomain();
+        builder.Services.ConfigureInfrastructure();
 
         builder.AddMediatRConfiguration();
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
