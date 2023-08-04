@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bravi.Domain.Entities
+namespace Bravi.Domain.Entities.Base
 {
     public abstract class Entity<TId>
     {

@@ -14,7 +14,7 @@ public static class Bootstrapper
         if (services == null)
             throw new ArgumentNullException(nameof(services));
 
-        services.AddScoped<IDbConnection>(_ =>
+        services.AddSingleton<IDbConnection>(_ =>
         {
             var connectionStringBuilder = new SqliteConnectionStringBuilder
             {
@@ -28,12 +28,22 @@ public static class Bootstrapper
 
             // Criar a tabela Person (se ela não existir)
             connection.Execute(@"
-            CREATE TABLE IF NOT EXISTS Person (
-                Id INTEGER PRIMARY KEY AUTOINCREMENT,
-                Name TEXT NOT NULL,
-                LastName TEXT NOT NULL,
-                Nickname TEXT NULL
-            )");
+                CREATE TABLE IF NOT EXISTS Person (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    Name TEXT NOT NULL,
+                    LastName TEXT NOT NULL,
+                    Nickname TEXT NULL
+                );
+
+                CREATE TABLE IF NOT EXISTS Contact (
+                    PersonId INTEGER NOT NULL,
+                    Value TEXT NOT NULL,
+                    Type INTEGER NOT NULL,
+                    IsMain INTEGER NOT NULL,
+                    PRIMARY KEY (PersonId, Type),
+                    FOREIGN KEY (PersonId) REFERENCES Person (Id)
+                );
+            ");
 
             return connection;
         });

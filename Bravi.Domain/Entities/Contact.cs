@@ -1,4 +1,5 @@
-﻿using Bravi.Domain.Enums;
+﻿using Bravi.Domain.Entities.Base;
+using Bravi.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -8,4 +8,6 @@ using System.Threading.Tasks;
 
 namespace Bravi.Domain.Repositories;
 
-public interface IPersonRepository : IRepositoryBase<Person, int> { }
+public interface IPersonRepository : IRepositoryBase<Person, int> {
+    public Task<IEnumerable<Person>> GetAllAsync();
+}

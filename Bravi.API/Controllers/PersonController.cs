@@ -11,8 +11,11 @@ namespace Bravi.API.Controllers;
 public class PersonController : ControllerBaseApi
 {
 
-    public PersonController(IMediator mediatR, IDomainNotificationContext notification) : base(mediatR, notification){}
+    public PersonController(IMediator mediatR, IDomainNotificationContext notification) : base(mediatR, notification){ }
 
     [HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] CreatePersonCommand command) => await TrySendCommand(command);
+
+    [HttpGet]
+    public async Task<IActionResult> GetAsync() => await TrySendCommand(new QueryPersonCommand());
 }
