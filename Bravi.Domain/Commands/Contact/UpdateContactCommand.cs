@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace Bravi.Domain.Commands.Contact
 {
-    public record CreateContactCommand : ContactCommand, IRequest<GenericCommandResult>
+    public record UpdateContactCommand : ContactCommand, IRequest<GenericCommandResult>
     {
         [JsonIgnore]
-        public int PersonId { get; set; }
-
-        public CreateContactCommand SetIds(int personId) 
+        public int Id { get; set; }
+        public UpdateContactCommand SetId(int id) 
         {
-            PersonId = personId;
+            Id = id;
             return this;
         }
     }

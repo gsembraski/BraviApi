@@ -9,10 +9,5 @@ using System.Threading.Tasks;
 
 namespace Bravi.Domain.Commands.Person
 {
-    public record PersonCommand
-    {
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string? Nickname { get; set; }
-    }
+    public record QueryByIdPersonCommand(int Id) : IRequest<GenericCommandResult>;
 }

@@ -34,7 +34,7 @@ namespace Bravi.Domain.Commands.Contact
                 return new GenericCommandResult(false);
             }
 
-            var contact = await _contactRepository.GetAsync(x => x.Value == request.Value && x.PersonId == request.PersonId);
+            var contact = await _contactRepository.GetContactByValuePersonAsync(request.PersonId, request.Value);
             if (contact != null)
             {
                 _notification.NotifyError("Esse contato já esta vinculado a essa pessoa.");
@@ -44,7 +44,7 @@ namespace Bravi.Domain.Commands.Contact
             contact = new Entities.Contact(request.PersonId, request.Value, request.Type, request.IsMain);
             await _contactRepository.InsertAsync(contact);
 
-            return new GenericCommandResult(true, "Contato cadastrado com sucesso!", person.Id);
+            return new GenericCommandResult(true, "Contato cadastrado com sucesso!", contact.Id);
         }
     }
 }

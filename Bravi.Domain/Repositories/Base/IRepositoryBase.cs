@@ -13,7 +13,7 @@ public interface IRepositoryBase<TEntity, TId>
     where TId : struct
 {
     Task<TEntity> GetByIdAsync(TId id);
-    Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate);
+    Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate);
     Task InsertAsync(TEntity entity);
     Task UpdateAsync(TEntity entity);
     Task DeleteByIdAsync(TId Id);

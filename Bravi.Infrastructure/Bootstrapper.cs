@@ -36,12 +36,11 @@ public static class Bootstrapper
                 );
 
                 CREATE TABLE IF NOT EXISTS Contact (
+                    Id INTEGER PRIMARY KEY AUTOINCREMENT,
                     PersonId INTEGER NOT NULL,
                     Value TEXT NOT NULL,
                     Type INTEGER NOT NULL,
-                    IsMain INTEGER NOT NULL,
-                    PRIMARY KEY (PersonId, Type),
-                    FOREIGN KEY (PersonId) REFERENCES Person (Id)
+                    IsMain INTEGER NOT NULL
                 );
             ");
 

@@ -20,5 +20,12 @@ namespace Bravi.Domain.Entities
         public string Name { get; private set; }
         public string LastName { get; private set; }
         public string Nickname { get; private set; }
+
+        public void Update(string name, string lastName, string nickname)
+        {
+            Name = name;
+            LastName = lastName;
+            Nickname = nickname;
+        }
     }
 }

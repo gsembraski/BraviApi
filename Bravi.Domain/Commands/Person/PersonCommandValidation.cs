@@ -20,11 +20,6 @@ namespace Bravi.Domain.Commands.Person
                 .NotNull()
                 .NotEmpty()
                 .WithMessage("Error {PropertyName}: O campo é obrigatório.");
-
-            RuleFor(x => x.Nickname)
-                .NotNull()
-                .NotEmpty()
-                .WithMessage("Error {PropertyName}: O campo é obrigatório.");
         }
     }
 }

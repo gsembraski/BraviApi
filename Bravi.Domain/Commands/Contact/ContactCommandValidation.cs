@@ -20,12 +20,12 @@ namespace Bravi.Domain.Commands.Contact
             RuleFor(x => x.Value)
                 .EmailAddress()
                 .When(x => x.Type == ContacTypeEnum.Mail)
-                .WithMessage("Error {PropertyName}: O campo é obrigatório.");
+                .WithMessage("Error {PropertyName}: O e-mail esta no formato incorreto");
 
             RuleFor(x => x.Value)
-                .Matches("^[0-9]{2}-([0-9]{8}|[0-9]{9})")
+                .Matches(@"^\(?\d{2}\)?[\s-]?[\s9]?\d{4}-?\d{4}$")
                 .When(x => x.Type == ContacTypeEnum.Phone)
-                .WithMessage("Error {PropertyName}: O campo é obrigatório.");
+                .WithMessage("Error {PropertyName}: O telefone esta no formato incorreto.");
 
             RuleFor(x => x.Type)
                 .NotNull()
