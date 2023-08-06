@@ -22,19 +22,22 @@ public class ContactRepository : RepositoryBase<Contact, int>, IContactRepositor
 
     public async Task<Contact> GetByIdAsync(int id)
     {
-        return await _dbContext.QueryFirstAsync<Contact>("SELECT * FROM Contact WHERE Id = @id", new { id });
+        return await _dbContext.QueryFirstOrDefaultAsync<Contact>("SELECT * FROM Contact WHERE Id = @id", new { id });
     }
 
-    public async Task InsertAsync(Contact entity)
+    public async Task<int> InsertAsync(Contact entity)
     {
-        await _dbContext.ExecuteAsync("INSERT INTO Contact(Value, Type, PersonId, IsMain) Values (@Value, @Type, @PersonId, @IsMain)", entity);
+       return await _dbContext.ExecuteAsync(@"
+                INSERT INTO Contact(Value, Type, PersonId, IsMain) Values (@Value, @Type, @PersonId, @IsMain);
+                UPDATE Contact SET IsMain = 0 WHERE PersonId = @PersonId AND Id <> last_insert_rowid() AND IsMain = @IsMain AND Type = @Type;
+            ", entity);
     }
 
     public async Task UpdateAsync(Contact entity)
     {
         await _dbContext.ExecuteAsync(@"
                 UPDATE Contact SET Value = @Value, Type = @Type, IsMain = @IsMain WHERE Id = @Id;
-                UPDATE Contact SET IsMain = 0 WHERE PersonId = @PersonId AND Id <> @Id AND @IsMain = 1
+                UPDATE Contact SET IsMain = 0 WHERE PersonId = @PersonId AND Id <> @Id AND 1 = @IsMain AND Type = @Type;
             ", entity);
     }
 

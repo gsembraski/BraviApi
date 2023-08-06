@@ -23,7 +23,7 @@ namespace Bravi.Domain.Commands.Person
 
         public async Task<GenericCommandResult> Handle(QueryByIdPersonCommand request, CancellationToken cancellationToken)
         {
-            var person = await _personRepository.GetByIdAsync(request.Id);
+            var person = await _personRepository.GetAllByIdAsync(request.Id);
             if (person == null)
             {
                 _notification.NotifyError("Pessoa não cadastrada em nosso sistema.");

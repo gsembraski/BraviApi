@@ -1,4 +1,5 @@
-﻿using Bravi.Domain.Repositories;
+﻿using Bravi.Domain.Enums;
+using Bravi.Domain.Repositories;
 using Bravi.Domain.Resources.Notification;
 using Bravi.Domain.Resources.Result;
 using MediatR;
@@ -41,7 +42,7 @@ namespace Bravi.Domain.Commands.Contact
                 return new GenericCommandResult(false);
             }
 
-            contact = new Entities.Contact(request.PersonId, request.Value, request.Type, request.IsMain);
+            contact = new Entities.Contact(request.PersonId, request.Value, (ContacTypeEnum)request.Type, request.IsMain);
             await _contactRepository.InsertAsync(contact);
 
             return new GenericCommandResult(true, "Contato cadastrado com sucesso!", contact.Id);

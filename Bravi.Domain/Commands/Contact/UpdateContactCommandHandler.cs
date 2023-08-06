@@ -1,4 +1,5 @@
-﻿using Bravi.Domain.Repositories;
+﻿using Bravi.Domain.Enums;
+using Bravi.Domain.Repositories;
 using Bravi.Domain.Resources.Notification;
 using Bravi.Domain.Resources.Result;
 using MediatR;
@@ -34,7 +35,7 @@ namespace Bravi.Domain.Commands.Contact
                 return new GenericCommandResult(false);
             }
 
-            contact.Update(request.Value, request.Type, request.IsMain);
+            contact.Update(request.Value, (ContacTypeEnum)request.Type, request.IsMain);
             await _contactRepository.UpdateAsync(contact);
 
             return new GenericCommandResult(true, "Contato atualizado com sucesso!", contact.Id);

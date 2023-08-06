@@ -22,9 +22,6 @@ public class ContactController : ControllerBaseApi
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> DeleteAsync([FromRoute] int id) => await TrySendCommand(new DeleteContactCommand(id));
 
-    [HttpGet("{personId:int}")]
-    public async Task<IActionResult> GetAsync([FromRoute] int personId) => await TrySendCommand(new QueryContactCommand(personId));
-
-    [HttpGet("{id}")]
+    [HttpGet("{id:int}")]
     public async Task<IActionResult> GetByIdAsync([FromRoute] int id) => await TrySendCommand(new QueryByIdContactCommand(id));
 }

@@ -1,4 +1,5 @@
 ﻿using Bravi.Domain.Entities;
+using Bravi.Domain.Model;
 using Bravi.Domain.Repositories.Base;
 using System;
 using System.Collections.Generic;
@@ -9,5 +10,6 @@ using System.Threading.Tasks;
 namespace Bravi.Domain.Repositories;
 
 public interface IPersonRepository : IRepositoryBase<Person, int> {
-    public Task<IEnumerable<Person>> GetAllAsync();
+    Task<IEnumerable<Person>> GetAllAsync();
+    Task<PersonModel> GetAllByIdAsync(int id);
 }

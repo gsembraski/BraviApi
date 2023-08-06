@@ -24,9 +24,9 @@ namespace Bravi.Domain.Commands.Person
         public async Task<GenericCommandResult> Handle(CreatePersonCommand request, CancellationToken cancellationToken)
         {
             var person = new Entities.Person(request.Name, request.LastName, request.Nickname);
-            await _personRepository.InsertAsync(person);
-
-            return new GenericCommandResult(true, "Pessoa cadastrada com sucesso!", person.Id);
+            var id = await _personRepository.InsertAsync(person);
+            
+            return new GenericCommandResult(true, "Pessoa cadastrada com sucesso!", id);
         }
     }
 }

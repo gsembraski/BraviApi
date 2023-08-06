@@ -13,7 +13,7 @@ namespace Bravi.Domain.Commands.Contact
     public record ContactCommand
     {
         public string Value { get; set; }
-        public ContacTypeEnum Type { get; set; }
+        public int Type { get; set; }
         public bool IsMain { get; set; }
     }
 }

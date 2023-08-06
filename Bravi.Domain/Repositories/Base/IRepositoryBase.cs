@@ -14,7 +14,7 @@ public interface IRepositoryBase<TEntity, TId>
 {
     Task<TEntity> GetByIdAsync(TId id);
     Task<IEnumerable<TEntity>> GetAsync(Expression<Func<TEntity, bool>> predicate);
-    Task InsertAsync(TEntity entity);
+    Task<int> InsertAsync(TEntity entity);
     Task UpdateAsync(TEntity entity);
     Task DeleteByIdAsync(TId Id);
 }

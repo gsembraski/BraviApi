@@ -30,7 +30,22 @@ namespace Bravi.Infrastructure.Provider.Repositories
 
         public async Task<PersonModel> GetAllByIdAsync(int id)
         {
-            return await _dbContext.QueryFirstOrDefaultAsync<PersonModel>("SELECT * FROM Person WHERE Id = @id", new { id });
+            var gridReader = await _dbContext.QueryMultipleAsync(@"
+                SELECT * FROM Person 
+                    WHERE Id = @id;
+                
+                SELECT * FROM Contact
+                    WHERE PersonId = @id;
+            ", new { id });
+
+            var result = new PersonModel();
+            using (var mult = gridReader)
+            {
+                result = await mult.ReadFirstAsync<PersonModel>();
+                result.Contacts = await mult.ReadAsync<Contact>();
+            }
+
+            return result;
         }
 
         public async Task<IEnumerable<Person>> GetAllAsync()
@@ -38,9 +53,12 @@ namespace Bravi.Infrastructure.Provider.Repositories
             return await _dbContext.QueryAsync<Person>("SELECT * FROM Person");
         }
 
-        public async Task InsertAsync(Person entity)
+        public async Task<int> InsertAsync(Person entity)
         {
-            await _dbContext.ExecuteAsync("INSERT INTO Person (Name, LastName, Nickname) VALUES (@Name, @LastName, @Nickname)", entity);
+            var id = await _dbContext.QueryFirstAsync<int>(@"
+                INSERT INTO Person (Name, LastName, Nickname) VALUES (@Name, @LastName, @Nickname); 
+                SELECT last_insert_rowid();", entity);
+            return id;
         }
 
         public async Task UpdateAsync(Person entity)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bravi.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +15,8 @@ namespace Bravi.Domain.Model
         public string Nickname { get; set; }
 
         [JsonIgnore]
-        public IEnumerable<ContactModel> Contacts { get; set; }
-        public IEnumerable<ContactModel> EmailContacts { get { return Contacts.Where(x => x.Type == Enums.ContacTypeEnum.Mail); } }
-        public IEnumerable<ContactModel> PhoneContacts { get { return Contacts.Where(x => x.Type == Enums.ContacTypeEnum.Phone); } }
+        public IEnumerable<Contact> Contacts { get; set; }
+        public IEnumerable<Contact> EmailContacts { get { return Contacts.Where(x => x.Type == Enums.ContacTypeEnum.Mail); } }
+        public IEnumerable<Contact> PhoneContacts { get { return Contacts.Where(x => x.Type == Enums.ContacTypeEnum.Phone); } }
     }
 }
